@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>message</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <img class="logo" src="DSMS_logo.jpg" />
+      </div>
+
+      <div class="div a">
+        <a href="index.html">홈</a>
+        <a id="login-menu" href="login.html">로그인</a>
+        <a href="major.html">전공</a>
+        <a href="subject.html">교과</a>
+        <a href="message.html">메시지</a>
+        <a href="focus.html">방해금지</a>
+        <a id="logout-menu" href="#" onclick="logout()">로그아웃</a>
+      </div>
+    </header>
+
+    <class="message-section">
+      <h2>질문하기</h2>
+
+      <select id="major"> <!-- 전공 선택 드롭다운 -->
+        <option value="AI">AI</option> 
+        <option value="백엔드">백엔드</option>
+        <option value="프론트엔드">프론트엔드</option>
+        <option value="게임">게임</option>
+        <option value="임베디드">임베디드</option>
+        <option value="DevOps">DevOps</option>
+        <option value="플러터">플러터</option>
+        <option value="정보보안">정보보안</option>
+        <option value="디자인">디자인</option>
+        <option value="안드로이드">안드로이드</option>
+        <option value="iOS">iOS</option>
+      </select> <!-- 전공 선택 드롭다운 -->
+      
+      <textarea id="message" placeholder="궁금한 점을 물어보세요"> </textarea>
+      <!-- 텍스트 박스 -->
+
+      <button id="send-btn">전송</button>
+
+      <div id="message-list"></div>
+    </section>
+
+    <script src="menu.js"></script>
+    <script src="message.js"></script>
+  </body>
+</html>

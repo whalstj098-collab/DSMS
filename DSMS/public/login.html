@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <img class="logo" src="DSMS_logo.jpg" alt="DSMS 로고" />
+      </div>
+
+      <div class="div a">
+        <a href="index.html">홈</a>
+        <a href="login.html">로그인</a>
+        <a href="major.html">전공</a>
+        <a href="subject.html">교과</a>
+        <a href="message.html">메시지</a>
+        <a href="focus.html">방해금지</a>
+      </div>
+    </header>
+
+    <section class="login-section">
+      <div class="login-card">
+        <h2>로그인</h2>
+
+        <input type="email" id="email" placeholder="이메일을 입력하세요" />
+
+        <input
+          type="password"
+          id="password"
+          placeholder="비밀번호를 입력하세요"
+        />
+
+        <button id="login-btn">로그인</button>
+
+        <button onclick="location.href = 'signup.html'">회원가입</button>
+      </div>
+    </section>
+
+    <script src="login.js"></script>
+    <!-- 로그인 페이지의 JavaScript 파일을 포함합니다. -->
+    <script src="menu.js"></script>
+  </body>
+</html>

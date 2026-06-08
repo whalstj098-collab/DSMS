@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSMS</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <img class="logo" src="DSMS_logo.jpg" alt="DSMS 로고" />
+      </div>
+      <div class="div a">
+        <a href="index.html">홈</a>
+        <a id="login-menu" href="login.html">로그인</a>
+        <a href="major.html">전공</a>
+        <a href="subject.html">교과</a>
+        <a href="message.html">메시지</a>
+        <a href="focus.html">방해금지</a>
+        <a id="logout-menu" href="#" onclick="logout()">로그아웃</a>
+      </div>
+    </header>
+
+    <section class="topic">
+      <h2>지식의 연결,<br />성장의 시작점</h2>
+
+      <p>
+        선생님, 선배님, 학생을 연결하여 궁금한 것들을 자유롭게 질문하고 멘토링
+        받을 수 있는 서비스입니다.
+      </p>
+
+      <div class="buttons">
+        <a href="major.html">전공 탐색</a>
+        <a href="subject.html">교과 탐색</a>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="card">
+        <h3>전공 멘토 찾기</h3>
+        <p>원하는 전공의 선배와 선생님을 찾아보세요</p>
+      </div>
+
+      <div class="card">
+        <h3>교과 선생님 찾기</h3>
+        <p>
+          원하는 과목의 선생님을 <br />
+          찾아보세요
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>메시지 기능</h3>
+        <p>
+          선생님, 선배님에게 궁금한 것을 자유롭게 물어봐 자신의 역량을 키워
+          앞으로 나아가세요
+        </p>
+      </div>
+    </section>
+    <script>
+      function logout() {
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰을 제거하여 로그아웃 처리
+        alert("로그아웃 되었습니다.");
+        location.href = "login.html"; // 로그아웃 후 로그인 페이지로 이동
+      }
+    </script>
+    <script>
+      function logout() {
+        localStorage.removeItem("token"); // 로컬 스토리지에서 "token"이라는 키로 저장된 값을 제거하여 로그아웃 처리
+        alert("로그아웃 되었습니다.");
+        location.href = "login.html";
+      }
+
+      const token = localStorage.getItem("token");
+
+      const loginMenu = document.getElementById("login-menu"); // "login-menu"라는 ID를 가진 요소를 가져와서 loginMenu 변수에 할당
+      const logoutMenu = document.getElementById("logout-menu");
+
+      if (token) {
+        loginMenu.style.display = "none"; // 로그인 메뉴 숨김
+        logoutMenu.style.display = "inline";
+      } else {
+        logoutMenu.style.display = "none"; // 로그아웃 메뉴 숨김
+      }
+    </script>
+    <script src="menu.js"></script>
+  </body>
+</html>
