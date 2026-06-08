@@ -62,7 +62,7 @@ app.post("/login", (req, res) => {
     });
   }
 });
-// 메시지 등록
+// 질문 등록
 app.post("/message", (req, res) => {
   const { user, major, message } = req.body; // 요청 본문에서 user, major와 message를 추출하여 변수에 할당
 
@@ -86,6 +86,23 @@ app.get("/messages", (req, res) => {
   const messages = JSON.parse(fs.readFileSync("messages.json", "utf8")); // "messages.json" 파일을 읽어서 JSON 형식으로 파싱하여 messages 변수에 할당
 
   res.json(messages); // messages 배열을 JSON 형식으로 응답으로 반환
+});
+
+// 멘토 답변 등록
+app.post("/reply", (req, res) => {
+  // "/reply" 엔드포인트로 POST 요청이 들어오면 이 함수가 실행
+  const { index, reply } = req.body; // 요청 본문에서 index와 reply를 추출하여 변수에 할당
+
+  const messages = JSON.parse(fs.readFileSync("messages.json", "utf8")); // "messages.json" 파일을 읽어서 JSON 형식으로 파싱하여 messages 변수에 할당
+
+  messages[index].reply = reply; // messages 배열에서 index에 해당하는 메시지의 reply 필드에 멘토 답변을 저장
+
+  fs.writeFileSync("messages.json", JSON.stringify(messages, null, 2)); // messages 배열을 JSON 문자열로 변환하고 "messages.json" 파일에 저장
+
+  res.json({
+    success: true, // 멘토 답변 등록 성공 응답을 JSON 형식으로 반환
+    message: "답변이 등록되었습니다.",
+  });
 });
 
 //서버 실행
