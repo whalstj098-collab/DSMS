@@ -10,7 +10,7 @@ app.use(express.static("public")); // public 폴더 사용
 
 // 회원가입
 app.post("/signup", (req, res) => {
-  const { name, email, password } = req.body; // 요청 본문에서 name, email, password를 추출하여 변수에 할당
+  const { name, email, password, major, grade, intro } = req.body; // 요청 본문에서 name, email, password, major, grade, intro를 추출하여 변수에 할당
 
   const users = JSON.parse(fs.readFileSync("users.json", "utf8")); // "users.json" 파일을 읽어서 JSON 형식으로 파싱하여 users 변수에 할당
 
@@ -19,6 +19,9 @@ app.post("/signup", (req, res) => {
     name,
     email,
     password,
+    major,
+    grade,
+    intro,
   });
 
   fs.writeFileSync("users.json", JSON.stringify(users, null, 2)); // users 배열을 JSON 문자열로 변환하고 "users.json" 파일에 저장
@@ -91,11 +94,12 @@ app.get("/messages", (req, res) => {
 // 멘토 답변 등록
 app.post("/reply", (req, res) => {
   // "/reply" 엔드포인트로 POST 요청이 들어오면 이 함수가 실행
-  const { index, reply } = req.body; // 요청 본문에서 index와 reply를 추출하여 변수에 할당
+  const { index, reply, replyUser } = req.body; // 요청 본문에서 index와 reply를 추출하여 변수에 할당
 
   const messages = JSON.parse(fs.readFileSync("messages.json", "utf8")); // "messages.json" 파일을 읽어서 JSON 형식으로 파싱하여 messages 변수에 할당
 
   messages[index].reply = reply; // messages 배열에서 index에 해당하는 메시지의 reply 필드에 멘토 답변을 저장
+  messages[index].replyUser = replyUser; // 답변을 등록한 멘토의 이름을 저장
 
   fs.writeFileSync("messages.json", JSON.stringify(messages, null, 2)); // messages 배열을 JSON 문자열로 변환하고 "messages.json" 파일에 저장
 
@@ -108,4 +112,11 @@ app.post("/reply", (req, res) => {
 //서버 실행
 app.listen(3000, () => {
   console.log("DSMS 서버 실행 중");
+});
+
+// 멘토 목록 반환
+app.get("/mentors", (req, res) => {
+  const mentors = JSON.parse(fs.readFileSync("mentors.json", "utf8"));
+
+  res.json(mentors);
 });

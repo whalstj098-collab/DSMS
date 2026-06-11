@@ -52,7 +52,7 @@ ${
   msg.reply
     ? `
       <div class="reply-box">
-        <strong>멘토 답변</strong>
+        <strong>${msg.replyUser}님의 답변</strong>
         <p>${msg.reply}</p>
       </div>
       `
@@ -116,6 +116,7 @@ function showReplyBox(index) {
 // 답변 등록 함수
 async function submitReply(index) {
   const reply = document.getElementById(`reply-input-${index}`).value;
+  const replyUser = localStorage.getItem("name");
 
   if (!reply.trim()) {
     alert("답변을 입력하세요.");
@@ -130,6 +131,7 @@ async function submitReply(index) {
     body: JSON.stringify({
       index,
       reply,
+      replyUser, // 답변을 등록한 멘토의 이름도 함께 서버로 전송
     }),
   });
 

@@ -7,6 +7,10 @@ signupBtn.addEventListener("click", async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+  const major = document.getElementById("major").value; // "major"라는 ID를 가진 요소의 값을 가져오고 major 변수에 할당
+  const grade = document.getElementById("grade").value;
+  const intro = document.getElementById("intro").value;
+
   const response = await fetch("/signup", {
     // "/signup" 엔드포인트로 POST 요청을 보냄
     method: "POST",
@@ -14,11 +18,13 @@ signupBtn.addEventListener("click", async () => {
       "Content-Type": "application/json", // 요청 본문이 JSON 형식임을 서버에 알리는 헤더를 설정
     },
     body: JSON.stringify({
-      // 요청 본문에 name, email, password를 JSON 문자열로 변환하여 포함
       name,
       email,
       password,
-    }),
+      major,
+      grade,
+      intro,
+    }), // 요청 본문에 name, email, password, major, grade, intro를 JSON 문자열로 변환하여 포함
   });
 
   const result = await response.json(); // 서버로부터 JSON 형식의 응답을 받아서 result 변수에 할당
