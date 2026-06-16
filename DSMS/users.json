@@ -1,20 +1,26 @@
 [
   {
-    "name": "조민서",
-    "email": "whalstj098@gmail.com",
-    "password": "Whalstj24680!"
-  },
-  {
-    "name": "test 2",
-    "email": "20261413@dsm.hs.kr",
-    "password": "Whalstj24680!"
-  },
-  {
     "name": "test 3",
     "email": "whalstj",
     "password": "1234",
     "major": "백엔드",
     "grade": "3학년",
     "intro": "안녕하세요"
+  },
+  {
+    "name": "test 2",
+    "email": "1111@gm",
+    "password": "1234",
+    "major": "AI",
+    "grade": "1학년",
+    "intro": "안녕"
+  },
+  {
+    "name": "test1",
+    "email": "1111@gm",
+    "password": "12334",
+    "major": "DevOps",
+    "grade": "2학년",
+    "intro": "ㅇㅇㅇ"
   }
 ]

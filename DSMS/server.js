@@ -32,6 +32,7 @@ app.post("/signup", (req, res) => {
     message: "회원가입 완료",
   });
 });
+
 // 로그인
 app.post("/login", (req, res) => {
   const { email, password } = req.body; // 요청 본문에서 email과 password를 추출하여 변수에 할당
@@ -65,6 +66,7 @@ app.post("/login", (req, res) => {
     });
   }
 });
+
 // 질문 등록
 app.post("/message", (req, res) => {
   const { user, major, message } = req.body; // 요청 본문에서 user, major와 message를 추출하여 변수에 할당
@@ -109,6 +111,35 @@ app.post("/reply", (req, res) => {
   });
 });
 
+// 교과 질문 등록
+app.post("/subject", (req, res) => {
+  const { user, subject, message } = req.body;
+
+  const subjects = JSON.parse(fs.readFileSync("subjects.json", "utf8"));
+
+  subjects.push({
+    user,
+    subject,
+    message,
+    time: new Date().toLocaleString("ko-KR"),
+    reply: "",
+  });
+
+  fs.writeFileSync("subjects.json", JSON.stringify(subjects, null, 2));
+
+  res.json({
+    success: true,
+    message: "질문이 등록되었습니다.",
+  });
+});
+
+// 교과 질문 목록 조회
+app.get("/subjects", (req, res) => {
+  const subjects = JSON.parse(fs.readFileSync("subjects.json", "utf8"));
+
+  res.json(subjects);
+});
+
 //서버 실행
 app.listen(3000, () => {
   console.log("DSMS 서버 실행 중");
@@ -119,4 +150,11 @@ app.get("/mentors", (req, res) => {
   const mentors = JSON.parse(fs.readFileSync("mentors.json", "utf8"));
 
   res.json(mentors);
+});
+
+//목록 API
+app.get("/users", (req, res) => {
+  const users = JSON.parse(fs.readFileSync("users.json", "utf8"));
+
+  res.json(users);
 });

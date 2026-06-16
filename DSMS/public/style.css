@@ -225,26 +225,6 @@ textarea {
   border: 1px solid #ddd;
 }
 
-/* 전공별 멘토 섹션 스타일 */
-.major-section {
-  width: 80%;
-  margin: 30px auto;
-}
-
-#major-select {
-  width: 200px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.mentor-card {
-  background: white;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
 /*회원가입*/
 #major,
 #grade,
@@ -260,4 +240,23 @@ textarea {
 #intro {
   height: 100px;
   resize: vertical;
+}
+/*전공 찾기 프로필 카드*/
+.mentor-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  padding: 15px;
+  margin-bottom: 15px;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.mentor-card h3 {
+  margin: 0 0 8px 0;
+}
+
+.mentor-card p {
+  margin: 4px 0;
 }

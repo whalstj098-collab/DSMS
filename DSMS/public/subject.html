@@ -13,13 +13,30 @@
       </div>
       <div class="div a">
         <a href="index.html">홈</a>
-        <a id="login-menu" href="login.html">로그인</a>
         <a href="major.html">전공</a>
         <a href="subject.html">교과</a>
         <a href="message.html">질문 게시판</a>
         <a href="focus.html">방해금지</a>
-        <a id="logout-menu" href="#" onclick="logout()">로그아웃</a>
       </div>
     </header>
+    <select id="subject-select">
+      <option value="전체">전체</option>
+      <option value="국어">국어</option>
+      <option value="수학">수학</option>
+      <option value="영어">영어</option>
+      <option value="과학">과학</option>
+      <option value="사회">사회</option>
+      <option value="화면디자인">화면디자인</option>
+      <option value="프로그래밍">프로그래밍</option>
+    </select>
+
+    <textarea
+      id="subject-message"
+      placeholder="교과 질문을 입력하세요"
+    ></textarea>
+
+    <button id="subject-send-btn">질문 등록</button>
+
+    <div id="subject-list"></div>
   </body>
 </html>
