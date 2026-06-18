@@ -1,53 +1,48 @@
-const select = document.getElementById("major-select"); // 전공 선택 드롭다운 요소를 가져와서 select 변수에 저장
+document.addEventListener("DOMContentLoaded", () => {
+  // 전공 선택 dropdown
+  const select = document.getElementById("major-select");
 
-// 로그인된 사용자 이름 표시
-const userName = localStorage.getItem("name"); // localStorage에 저장된 사용자 이름을 가져옴
+  if (!select) return;
 
-const userNameElement = document.getElementById("user-name"); // user-name이라는 id를 가진 요소를 가져옴
+  /*사용자 목록 서버에서 가져오기*/
+  async function loadUsers() {
+    const response = await fetch("/users");
+    const users = await response.json();
 
-// user-name 요소가 존재할 때만 이름 표시
-if (userNameElement) {
-  userNameElement.textContent = userName || "게스트";
-}
+    const list = document.getElementById("mentor-list");
 
-// 사용자 목록 불러오기
-async function loadUsers() {
-  const response = await fetch("/users"); // 서버에 사용자 목록 요청
+    // 기존 목록 초기화
+    list.innerHTML = "";
 
-  const users = await response.json(); // JSON 데이터를 users 변수에 저장
+    const selectedMajor = select.value;
 
-  const list = document.getElementById("mentor-list"); // 멘토 목록을 표시할 영역 가져오기
+    // 사용자 반복 출력
+    users.forEach((user) => {
+      // 전공 정보 없는 경우 제외
+      if (!user.major) return;
 
-  list.innerHTML = ""; // 기존 목록 제거
+      // 필터 조건
+      if (selectedMajor === "전체" || user.major === selectedMajor) {
+        list.innerHTML += `
+          <div class="mentor-card">
 
-  const selectedMajor = select.value; // 현재 선택된 전공 가져오기
+            <h3>${user.name}</h3>
 
-  users.forEach((user) => {
-    // 전공 정보가 없는 사용자는 건너뜀
-    if (!user.major) {
-      return;
-    }
+            <p>전공: ${user.major}</p>
 
-    // 전체 선택이거나 전공이 일치하는 경우만 출력
-    if (selectedMajor === "전체" || user.major === selectedMajor) {
-      list.innerHTML += `
-    <div class="mentor-card">
+            <p>학년: ${user.grade}</p>
 
-      <h3>${user.name}</h3>
+            <p>${user.intro}</p>
 
-      <p>전공: ${user.major}</p>
+          </div>
+        `;
+      }
+    });
+  }
 
-      <p>학년: ${user.grade}</p>
+  // 전공 변경 시 다시 로딩
+  select.addEventListener("change", loadUsers);
 
-      <p>${user.intro}</p>
-
-    </div>`;
-    }
-  });
-}
-
-// 사용자가 전공을 변경하면 목록 다시 불러오기
-select.addEventListener("change", loadUsers);
-
-// 페이지가 처음 열릴 때 사용자 목록 표시
-loadUsers();
+  // 최초 실행
+  loadUsers();
+});

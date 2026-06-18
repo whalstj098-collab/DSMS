@@ -1,17 +1,31 @@
+// 로그아웃 함수
 function logout() {
-  localStorage.removeItem("token"); // 로컬 스토리지에서 토큰을 제거하여 로그아웃 처리
+  localStorage.removeItem("token");
+  localStorage.removeItem("name");
+
   alert("로그아웃 되었습니다.");
+
   location.href = "login.html";
 }
 
-const token = localStorage.getItem("token");
+// DOM 로딩 후 실행
+document.addEventListener("DOMContentLoaded", () => {
+  // 로그인 상태 확인
+  const token = localStorage.getItem("token");
 
-const loginMenu = document.getElementById("login-menu"); // "login-menu"라는 ID를 가진 요소를 가져와서 loginMenu 변수에 할당
-const logoutMenu = document.getElementById("logout-menu"); // "logout-menu"라는 ID를 가진 요소를 가져와서 logoutMenu 변수에 할당
+  // 메뉴 요소 가져오기
+  const loginMenu = document.getElementById("login-menu");
+  const logoutMenu = document.getElementById("logout-menu");
 
-if (token) {
-  loginMenu.style.display = "none";
-  logoutMenu.style.display = "inline"; // 로그아웃 메뉴 표시
-} else {
-  logoutMenu.style.display = "none"; // 로그아웃 메뉴 숨김
-}
+  // 요소 없으면 종료
+  if (!loginMenu || !logoutMenu) return;
+
+  // 로그인 상태에 따라 UI 변경
+  if (token) {
+    loginMenu.style.display = "none";
+    logoutMenu.style.display = "inline-block";
+  } else {
+    loginMenu.style.display = "inline-block";
+    logoutMenu.style.display = "none";
+  }
+});
