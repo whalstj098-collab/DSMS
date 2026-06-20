@@ -4,6 +4,14 @@
     "subject": "전체",
     "message": "ㅌㅇ",
     "time": "2026. 6. 17. 오전 11:03:10",
+    "reply": "ㅇㅇㅇ",
+    "replyUser": "test 2"
+  },
+  {
+    "user": "test 2",
+    "subject": "국어",
+    "message": "안녕",
+    "time": "2026. 6. 20. 오후 5:58:26",
     "reply": ""
   }
 ]

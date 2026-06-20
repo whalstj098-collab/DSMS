@@ -13,7 +13,8 @@
     "password": "1234",
     "major": "AI",
     "grade": "1학년",
-    "intro": "안녕"
+    "intro": "안녕",
+    "status": "방해금지"
   },
   {
     "name": "test1",

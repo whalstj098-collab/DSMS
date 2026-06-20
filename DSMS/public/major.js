@@ -25,14 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedMajor === "전체" || user.major === selectedMajor) {
         list.innerHTML += `
           <div class="mentor-card">
-
             <h3>${user.name}</h3>
-
             <p>전공: ${user.major}</p>
-
             <p>학년: ${user.grade}</p>
-
             <p>${user.intro}</p>
+            <p>
+            상태 :
+            ${
+              user.status === "방해금지"
+                ? "🔴 방해금지"
+                : user.status === "수업 중"
+                  ? "🟠 수업 중"
+                  : user.status === "자리 비움"
+                    ? "⚫ 자리 비움"
+                    : "🟢 온라인"
+            }
+            </p>
 
           </div>
         `;

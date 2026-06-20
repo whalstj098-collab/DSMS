@@ -40,15 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     messages.forEach((msg, index) => {
       list.innerHTML += `
         <div class="card">
-
           <h3>${msg.user}</h3>
-
           <p>[${msg.major}]</p>
-
           <p>${msg.message}</p>
-
           <small>${msg.time}</small>
-
           ${
             msg.reply
               ? `

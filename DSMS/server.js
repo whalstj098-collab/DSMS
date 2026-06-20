@@ -22,6 +22,7 @@ app.post("/signup", (req, res) => {
     major,
     grade,
     intro,
+    state: "온라인", //기본 상태
   });
 
   fs.writeFileSync("users.json", JSON.stringify(users, null, 2)); // users 배열을 JSON 문자열로 변환하고 "users.json" 파일에 저장
@@ -157,4 +158,53 @@ app.get("/users", (req, res) => {
   const users = JSON.parse(fs.readFileSync("users.json", "utf8"));
 
   res.json(users);
+});
+
+// 교과 답변 등록
+app.post("/subjectReply", (req, res) => {
+  const { index, reply, replyUser } = req.body;
+
+  const subjects = JSON.parse(fs.readFileSync("subjects.json", "utf8"));
+
+  subjects[index].reply = reply;
+  subjects[index].replyUser = replyUser;
+
+  fs.writeFileSync("subjects.json", JSON.stringify(subjects, null, 2));
+
+  res.json({
+    success: true,
+    message: "답변이 등록되었습니다.",
+  });
+});
+
+// 사용자 목록 반환
+app.get("/users", (req, res) => {
+  const users = JSON.parse(fs.readFileSync("users.json", "utf8"));
+
+  res.json(users);
+});
+
+// 상태 변경
+app.post("/status", (req, res) => {
+  const { name, status } = req.body;
+
+  const users = JSON.parse(fs.readFileSync("users.json", "utf8"));
+
+  const user = users.find((u) => u.name === name);
+
+  if (user) {
+    user.status = status;
+
+    fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
+
+    res.json({
+      success: true,
+      message: "상태가 변경되었습니다.",
+    });
+  } else {
+    res.json({
+      success: false,
+      message: "사용자를 찾을 수 없습니다.",
+    });
+  }
 });

@@ -2,24 +2,37 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>focus</title>
+    <title>방해금지 모드</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <link rel="stylesheet" href="style.css" />
   <body>
     <header>
       <div>
-        <img class="logo" src="DSMS_logo.jpg" alt="DSMS 로고" />
+        <img class="logo" src="DSMS_logo.jpg" />
       </div>
+
       <div class="div a">
         <a href="index.html">홈</a>
-        <a href="login.html">로그인</a>
         <a href="major.html">전공</a>
         <a href="subject.html">교과</a>
         <a href="message.html">질문 게시판</a>
         <a href="focus.html">방해금지</a>
-        <a id="logout-menu" href="#" onclick="logout()">로그아웃</a>
       </div>
     </header>
+
+    <section class="focus-section">
+      <h2>내 상태 설정</h2>
+
+      <select id="status-select">
+        <option value="온라인">🟢 온라인</option>
+        <option value="방해금지">🔴 방해금지</option>
+        <option value="수업 중">🟠 수업 중</option>
+        <option value="자리 비움">⚫ 자리 비움</option>
+      </select>
+
+      <button id="save-status">상태 저장</button>
+    </section>
+
+    <script src="focus.js"></script>
   </body>
 </html>
