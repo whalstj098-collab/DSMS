@@ -224,12 +224,12 @@ textarea {
   margin-top: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-sizing: border-box;
+  box-sizing: border-box; /*박스 모델에서 요소의 너비와 높이에 패딩과 테두리 두께를 모두 포함하여 계산하도록 지정하는 속성*/
 }
 
 #intro {
   height: 100px;
-  resize: vertical;
+  resize: vertical; /*높이만 크기를 조절할 수 있도록 제한*/
 }
 /*전공 찾기 프로필 카드*/
 .mentor-card {
@@ -238,7 +238,7 @@ textarea {
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /*그림자*/
 }
 
 .mentor-card h3 {
@@ -255,7 +255,7 @@ textarea {
   margin: 30px auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 12px; /*자식 요소들에게 12px만큼 여백 주기*/
 }
 
 /* 과목 선택 */
@@ -273,7 +273,7 @@ textarea {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  resize: none;
+  resize: none; /*사용자가 웹페이지 내 요소(주로 <textarea>)의 크기를 임의로 조절하지 못하도록 고정*/
 }
 /* 질문 등록 버튼 */
 #subject-send-btn {

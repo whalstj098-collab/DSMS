@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 전공 정보 없는 경우 제외
       if (!user.major) return;
 
-      // 필터 조건
+      // selectedMajor와 사용자의 전공(user.major)을 비교해서 조건에 맞는 멘토만 화면에 출력
       if (selectedMajor === "전체" || user.major === selectedMajor) {
         list.innerHTML += `
           <div class="mentor-card">

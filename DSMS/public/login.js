@@ -10,9 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 로그인 버튼 가져오기
   const loginBtn = document.getElementById("login-btn");
 
-  // 버튼 클릭 이벤트
+  // 로그인 버튼을 클릭했을 때 이메일과 비밀번호 입력값 가져오기
   loginBtn.addEventListener("click", async () => {
-    // 입력값 가져오기
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 

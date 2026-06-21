@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("message").value;
     const major = document.getElementById("major").value;
     const user = localStorage.getItem("name");
-
+    // 입력한 메시지, 전공, 이름 가져오기
     const response = await fetch("/message", {
       method: "POST",
       headers: {
@@ -19,23 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
         major,
         message,
       }),
-    });
+    }); //서버에 메시지 전송 요청 보내기
 
     const result = await response.json();
 
     alert(result.message);
 
-    loadMessages();
+    loadMessages(); // 최신 메시지 목록을 다시 불러와 화면 갱신
   });
 
   /*메시지 목록 로딩*/
   async function loadMessages() {
-    const response = await fetch("/messages");
+    const response = await fetch("/messages"); // 서버에 저장된 메시지 목록 요청
     const messages = await response.json();
 
-    const list = document.getElementById("message-list");
+    const list = document.getElementById("message-list"); // 메시지를 표시할 영역 가져오기
 
-    list.innerHTML = "";
+    list.innerHTML = ""; // 기존 목록 초기화
 
     messages.forEach((msg, index) => {
       list.innerHTML += `
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${msg.message}</p>
           <small>${msg.time}</small>
           ${
-            msg.reply
+            msg.reply // 답변이 존재하는 경우 답변 표시
               ? `
                 <div class="reply-box">
                   <strong>${msg.replyUser}님의 답변</strong>
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
               `
           }
         </div>
-      `;
+      `; // 답변이 없는 경우 답변 작성 버튼 표시
     });
   }
 

@@ -162,22 +162,22 @@ app.get("/users", (req, res) => {
 
 // 교과 답변 등록
 app.post("/subjectReply", (req, res) => {
-  const { index, reply, replyUser } = req.body;
+  const { index, reply, replyUser } = req.body; // 클라이언트가 보낸 데이터 추출
 
-  const subjects = JSON.parse(fs.readFileSync("subjects.json", "utf8"));
+  const subjects = JSON.parse(fs.readFileSync("subjects.json", "utf8")); // subjects.json 파일의 내용을 읽어오기
 
   subjects[index].reply = reply;
-  subjects[index].replyUser = replyUser;
+  subjects[index].replyUser = replyUser; // 해당 질문에 답변 내용과 답변자 저장
 
-  fs.writeFileSync("subjects.json", JSON.stringify(subjects, null, 2));
+  fs.writeFileSync("subjects.json", JSON.stringify(subjects, null, 2)); // 수정된 내용을 subjects.json 파일에 저장
 
   res.json({
     success: true,
     message: "답변이 등록되었습니다.",
   });
-});
+}); // 클라이언트에게 성공 응답 전송
 
-// 사용자 목록 반환
+// 사용자 목록 반환 / users 경로로 들어오는 GET 요청을 처리
 app.get("/users", (req, res) => {
   const users = JSON.parse(fs.readFileSync("users.json", "utf8"));
 
